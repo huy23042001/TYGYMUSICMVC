@@ -1,0 +1,207 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="~/assets/css/index.css">
+    <!-- import libraries -->
+    <link rel="stylesheet" href="~/font-icons/css/all.css">
+    <script src="~/font-icons/css/all.min.css"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/dirPagination.js"></script>
+    <script src="~/Scripts/Controller/GuitarsController.js"></script>
+    <!-- end import -->
+
+</head>
+<body ng-app="TYGYApp">
+    <div class="row">
+        <div class="header">
+            <div class="col-6 col-m-12 col-s-12 col-xs-12">
+                <div class="col-5 col-m-5 col-s-5 col-xs-12 logo">
+                    <a href="index.html"><img src="~/pictures/logo.png" alt="Logo"></a>
+                </div>
+                <div class="col-7 col-m-7 col-s-7 col-xs-12 search">
+                    <div class="wrap">
+                        <input class="input-search" type="search" placeholder="Bạn muốn tìm gì" aria-label="Search">
+                        <button><i class="fa fa-search search-icon btn-search" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-m-12 col-s-12 col-xs-12 nav-center">
+                <div class="col-2 col-m-2 col-s-2 col-xs-2">
+                    <div class="black bold login">
+                        <span class="fa fa-user"></span><br>
+                        <label>Đăng nhập</label>
+                    </div>
+                </div>
+                <div class="col-2 col-m-2 col-s-2 col-xs-2">
+                    <div class="black bold signup">
+                        <span class="fa fa-user-plus"></span><br>
+                        <label>Đăng kí</label>
+                    </div>
+                </div>
+                <div class="col-2 col-m-2 col-s-2 col-xs-2">
+                    <div class="black bold cart">
+                        <span class="fa fa-cart-plus"><i class="amount-cart-item">0</i></span><br>
+                        <label>Giỏ hàng</label>
+                    </div>
+                </div>
+                <div class="col-6 col-m-6 col-s-6 col-xs-6 contact">
+                    <a class="black" href="#" title="Hotline" rel="nofollow">
+                        <span class="fa fa-phone"><i>Hotline</i></span>
+                        <p class="red bold">0963.938.183 (Hà Nội &amp; Hải Phòng)</p>
+                        <p class="red bold">0858.123.125 (Hồ Chí Minh)</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("~/Views/Shared/_NavbarPartial.cshtml")
+    <div class="row">
+        <div id="slide">
+            <div class="col-6 col-m-12 col-s-12 slideshow">
+                <img id="slide-img" src="~/pictures/slide/tygy-giam-gia-hot-sale-thang-3.jpg">
+                <i id="but-back" class="fas fa-angle-left" onclick="back()"></i>
+                <i id="but-next" class="fas fa-angle-right" onclick="next()"></i>
+            </div>
+            <div class="col-6 col-m-12 col-s-12 news">
+                <div class="navcate">
+                    <h3 class="title">Tin mới nhất</h3>
+                    <b></b>
+                </div>
+                <div class="news-item">
+                    <a href="#"></a>
+                    <div class="news-content">
+                        TYGY Free Ship Guitar Cho Tân Binh Nhập Ngũ 2021
+                        <div class="date">
+                            <span><i class="fa fa-calendar"></i> 25/02/2021</span>
+                        </div>
+                    </div>
+                    <div class="news-img">
+                        <img src="~/pictures/slide/tygy-guitar-freeship-mua-xuan-nhap-ngu.jpg">
+                    </div>
+
+                </div>
+                <div class="news-item">
+                    <a href="#"></a>
+                    <div class="news-content">
+                        Sale Lớn Tết Tân Sửu 2021 | Lì Xì Tiền Mặt và Nhiều Phần Quà Giá Trị
+                        <div class="date">
+                            <span><i class="fa fa-calendar"></i> 13/01/2021</span>
+                        </div>
+                    </div>
+                    <div class="news-img">
+                        <img src="~/pictures/slide/sale-lon-giam-gia-guitar-tet-tan-suu-2021.jpg">
+                    </div>
+
+                </div>
+                <div class="news-item">
+                    <a href="#"></a>
+                    <div class="news-content">
+                        TYGY giảm giá hot sale tháng 3
+                        <div class="date">
+                            <span><i class="fa fa-calendar"></i> 10/03/2021</span>
+                        </div>
+                    </div>
+                    <div class="news-img">
+                        <img src="~/pictures/slide/tygy-giam-gia-hot-sale-thang-3.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="main" class="row" ng-controller="GetGuitarsPage">
+        <div class="navcate">
+            <h3 class="title">Sản phẩm nổi bật</h3>
+            <b></b>
+        </div>
+        <div class="list-product">
+            <div dir-paginate="guitar in Listguitars|itemsPerPage:pageSize" total-items="totalCount" class="col-xs-12 col-s-6 col-m-4 col-3 product {{guitar.guitar_id}}">
+                <div class="product-content">
+                    <div class="lb-wrap">
+                        <span class="lb-hot">Hot</span>
+                    </div>
+                    <div class="product-img">
+                        <a href="productdetail.html"><img src="~/pictures/product/{{guitar.guitar_id}}/{{guitar.guitar_img}}" alt="guitar"></a>
+                    </div>
+                    <div class="infor">
+                        <h4><a class="content-product-h4" href="#" title="{{guitar.guitar_name}}">{{guitar.guitar_name}}</a></h4>
+                        <div class="price-box">
+                            <p><span class="product-price">{{guitar.guitar_price}}</span> VND</p>
+                        </div>
+                    </div>
+                    <input class="btn-add-to-cart" type="button" value="Thêm vào giỏ hàng">
+                </div>
+            </div>
+        </div>
+        <dir-pagination-controls max-size="maxSize" direction-links="true" boundary-links="true" on-page-change="GetGuitarsForPage(newPageNumber)"></dir-pagination-controls>
+    </div>
+    <div style="clear: both"></div>
+    <div class="page-box">
+        <button class="btn-previous-page"><i class="fas fa-angle-left"></i></button>
+        <input class="amount-page" type="text" value="1">
+        <button class="btn-next-page"><i class="fas fa-angle-right"></i></button>
+    </div>
+    <div id="footer">
+        <div class="row">
+            <div class="col-2 col-m-4 col-s-6 col-xs-12 footer-col">
+                <h3 class="heading">Chính sách</h3>
+                <ul>
+                    <li><a href="#">Chính sách giao hàng</a></li>
+
+                    <li><a href="#">Chính sách bảo hành &amp; đổi trả</a></li>
+
+                    <li><a href="#">Chính sách thanh toán</a></li>
+
+                    <li><a href="#">Chính sách bảo mật thông tin</a></li>
+                </ul>
+            </div>
+            <div class="col-2 col-m-4 col-s-6 col-xs-12 footer-col">
+                <h3 class="heading">Dịch vụ & hỗ trợ</h3>
+                <ul>
+                    <li><a href="#">An toàn mua bán</a></li>
+
+                    <li><a href="#">Đăng ký cộng tác viên</a></li>
+
+                    <li><a href="#">Hợp tác giảng dạy</a></li>
+
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                </ul>
+            </div>
+            <div class="col-2 col-m-4 col-s-6 col-xs-12 footer-col">
+                <h3 class="heading">TYGY.VN</h3>
+                <ul class="list-mn">
+
+                    <li><a href="#">Giới thiệu công ty</a></li>
+
+                    <li><a href="#">Tuyển dụng</a></li>
+
+                    <li><a href="#">Liên hệ</a></li>
+
+                </ul>
+            </div>
+            <div class="col-2 col-m-4 col-s-6 col-xs-12 contact">
+                <p>Mua hàng (9h00 - 22h00)</p>
+                <a href="#" title="Điện thoại mua hàng (9h00 - 22h00)" rel="nofollow">Bán lẻ: 0963 938 183 <br>Bán sỉ: 0931 390 555</a>
+            </div>
+            <div class="col-2 col-m-4 col-s-6 col-xs-12 contact">
+                <p>Góp ý, phản ánh (9h00 - 19h00)</p>
+                <a href="#" title="Điện thoại Góp ý, phản ánh (9h00 - 19h00)" rel="nofollow">0931 390 555 <br></a>
+            </div>
+            <div class="col-2 col-m-4 col-s-6 col-xs-12 social">
+                <a href="https://www.facebook.com/tongkhonhaccutygy/"><img src="~/pictures/icon/facebook_icon.png" alt="Facebook"></a>
+                <a href="https://www.youtube.com/channel/UCcvKy7jrvBSVPLrSMgXxyqw"><img src="~/pictures/icon/youtube-icon.jpg" alt="Youtube"></a>
+                <a href="https://tiki.vn/cua-hang/tygy-mussic"><img src="~/pictures/icon/tiki_icon.jpg" alt="Tiki"></a>
+                <a href="https://shopee.vn/tygy254254"><img src="~/pictures/icon/shopee-icon.jpg" alt="Shopee"></a>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/js/main.js"></script>
+</body>
+</html>
